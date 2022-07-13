@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import imgURL from '../assets/WaldoBanner.jpg'
+import Dropdown from './Dropdown';
+
+import imgURL from '../assets/WaldoBanner.jpg';
 
 const Image = () => {
   const [coords, setCoords] = useState({x: 0, y:0});
 
-  const [image, setImage] = useState(imgURL);
+  const [menuCoords, setMenuCoords] = useState({x: 0, y:0});
+  const [toggleMenu, setToggleMenu] = useState(false);
+
+  const [image] = useState(imgURL);
 
   const handleMouseMove = (e) => {
     setCoords({
@@ -14,10 +19,16 @@ const Image = () => {
     });
   }
 
+  const handleInput = () => {
+    setMenuCoords({x: coords.x, y: coords.y});
+    setToggleMenu(!toggleMenu);
+  }
+
   return (
     <div>
-      <img src={image} alt="" onMouseMove={handleMouseMove} />
-      <h2>Coords: {coords.x} {coords.y}</h2>
+      <img src={image} alt="" onMouseMove={handleMouseMove} onClick={handleInput} />
+
+      {toggleMenu && <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} />}
     </div>
   )
 }
