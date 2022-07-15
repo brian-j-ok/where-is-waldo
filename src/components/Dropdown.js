@@ -12,7 +12,11 @@ const Dropdown = (props) => {
         left: `${props.xCoord}px`,
       }}
     >
-      <h1>Coord: {props.xCoord} {props.yCoord}</h1>
+      <ul>
+        <li>Waldo</li>
+        <li>Yellow Waldo</li>
+        <li>Wizard</li>
+      </ul>
     </div>
   )
 }
