@@ -1,19 +1,17 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAOA-9bvwphP46ox6WIBtKW8PlFSiPTvTs",
-  authDomain: "where-s-waldo-7306f.firebaseapp.com",
-  projectId: "where-s-waldo-7306f",
-  storageBucket: "where-s-waldo-7306f.appspot.com",
-  messagingSenderId: "132299956344",
-  appId: "1:132299956344:web:fe68ba17cfc153b2200d8d"
+  apiKey: "AIzaSyD4K66WWpmDqAbi9CC-CZr6zaknDyoJ6zU",
+  authDomain: "where-is-waldo-2b897.firebaseapp.com",
+  projectId: "where-is-waldo-2b897",
+  storageBucket: "where-is-waldo-2b897.appspot.com",
+  messagingSenderId: "770516135102",
+  appId: "1:770516135102:web:f031af38da968c834d02ef"
 };
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
-
-console.log(getDocs(collection(db, 'characterCoords')));
 
 export default db;

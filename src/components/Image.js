@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dropdown from './Dropdown';
 import db from '../firebase/firebase-config';
-// import { doc, getDoc, onSnapshot, collection } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 import imgURL from '../assets/WaldoBanner.jpg';
 
@@ -13,17 +13,29 @@ const Image = () => {
 
   const [image] = useState(imgURL);
 
-  // const [characterCoords, setCharacterCoords] = useState([]);
+  const [characterCoords, setCharacterCoords] = useState([]);
 
-  // useEffect(() => {
-  // }, [])
-  
-  // const fetchData = async() => {
-  //   const docRef = doc(db, 'characterCoords', 'I6QASwXyjQ8i6XlirwD4');
-  //   const docSnap = await getDoc(docRef);
-  //   console.log(docSnap.data());
-  //   return docSnap.data();
-  // }
+  useEffect(() => {
+    const fetchData = async() => {
+      const querySnapshot = await getDocs(collection(db, "characterCoords"));
+      const characterArr = [];
+
+      querySnapshot.forEach((doc) => {
+        characterArr.push({
+          character: doc.id,
+          xCoord: doc.data().xCoord,
+          yCoord: doc.data().yCoord,
+        })
+      });
+
+      setCharacterCoords(characterArr);
+    }
+
+    fetchData();
+
+  }, [characterCoords]);
+
+
 
   const handleMouseMove = (e) => {
     setCoords({
