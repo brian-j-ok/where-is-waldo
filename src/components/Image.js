@@ -16,26 +16,23 @@ const Image = () => {
   const [characterCoords, setCharacterCoords] = useState([]);
 
   useEffect(() => {
-    const fetchData = async() => {
-      const querySnapshot = await getDocs(collection(db, "characterCoords"));
-      const characterArr = [];
-
-      querySnapshot.forEach((doc) => {
-        characterArr.push({
-          character: doc.id,
-          xCoord: doc.data().xCoord,
-          yCoord: doc.data().yCoord,
-        })
-      });
-
-      setCharacterCoords(characterArr);
-    }
-
     fetchData();
+  }, []);
 
-  }, [characterCoords]);
+  const fetchData = async() => {
+    const querySnapshot = await getDocs(collection(db, "characterCoords"));
+    const characterArr = [];
 
+    querySnapshot.forEach((doc) => {
+      characterArr.push({
+        character: doc.id,
+        xCoord: doc.data().xCoord,
+        yCoord: doc.data().yCoord,
+      })
+    });
 
+    setCharacterCoords(characterArr);
+  }
 
   const handleMouseMove = (e) => {
     setCoords({
@@ -53,7 +50,7 @@ const Image = () => {
     <div>
       <img src={image} alt="" onMouseMove={handleMouseMove} onClick={handleInput} />
 
-      {toggleMenu && <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} />}
+      {toggleMenu && <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} characterCoords={characterCoords}/>}
     </div>
   )
 }
