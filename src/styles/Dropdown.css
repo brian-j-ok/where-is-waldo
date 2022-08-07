@@ -21,3 +21,8 @@ ul {
 li:hover {
   background-color: lightgray;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}

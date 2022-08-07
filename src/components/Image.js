@@ -17,6 +17,7 @@ const Image = () => {
 
   useEffect(() => {
     fetchData();
+    
   }, []);
 
   const fetchData = async() => {
