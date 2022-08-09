@@ -15,6 +15,8 @@ const Image = () => {
 
   const [characterCoords, setCharacterCoords] = useState([]);
 
+  const [correct, setCorrect] = useState([]);
+
   useEffect(() => {
     fetchData();
     
@@ -47,11 +49,19 @@ const Image = () => {
     setToggleMenu(!toggleMenu);
   }
 
+  const addToCorrect = (character) => {
+    setCorrect([...correct, character]);
+    console.log(correct);
+  }
+
   return (
     <div>
       <img src={image} alt="" onMouseMove={handleMouseMove} onClick={handleInput} />
 
-      {toggleMenu && <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} characterCoords={characterCoords}/>}
+      {toggleMenu && 
+        <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} characterCoords={characterCoords} addToCorrect={addToCorrect} correct={correct}/>}
+      
+      {(correct.length === 3) && <h1>You Win!</h1>}
     </div>
   )
 }

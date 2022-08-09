@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import "../styles/Dropdown.css";
 
 const Dropdown = (props) => {
-  const [active, setActive] = useState([true, true, true]);
 
   const handleInput = (e) => {
     const character = props.characterCoords.find(({character}) => character === e.target.innerHTML.toLowerCase());
@@ -14,10 +13,7 @@ const Dropdown = (props) => {
 
     if ((character.xCoord + 50) >= props.xCoord && (character.xCoord - 50) <= props.xCoord) {
       if ((character.yCoord + 50) >= props.yCoord && (character.yCoord - 50) <= props.yCoord) {
-        const index = props.characterCoords.findIndex(({character}) => character === e.target.innerHTML.toLowerCase())
-        const temp = active;
-        temp[index] = false;
-        setActive(temp);
+        props.addToCorrect(character.character);
       }
     }
   }
@@ -30,9 +26,9 @@ const Dropdown = (props) => {
       }}
     >
       <ul>
-        <li onClick={handleInput} class={active[0] ? 'none' : 'disabled'}>Waldo</li>
-        <li onClick={handleInput} class={active[0] ? 'none' : 'disabled'}>Yellow Waldo</li>
-        <li onClick={handleInput} class={active[0] ? 'none' : 'disabled'}>Wizard</li>
+        <li onClick={handleInput} class={props.correct.includes("waldo") ? 'disabled' : 'none'}>Waldo</li>
+        <li onClick={handleInput} class={props.correct.includes("odlaw") ? 'disabled' : 'none'}>Odlaw</li>
+        <li onClick={handleInput} class={props.correct.includes("wizard") ? 'disabled' : 'none'}>Wizard</li>
       </ul>
     </div>
   )
