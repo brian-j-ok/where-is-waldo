@@ -58,6 +58,12 @@ const Image = () => {
     <div>
       <img src={image} alt="" onMouseMove={handleMouseMove} onClick={handleInput} />
 
+      {/* {characterCoords.map(character => {
+        if(correct.includes(character.character)) {
+          return <h1>{character.character}</h1>
+        }
+      })} */}
+
       {toggleMenu && 
         <Dropdown xCoord={menuCoords.x} yCoord={menuCoords.y} characterCoords={characterCoords} addToCorrect={addToCorrect} correct={correct}/>}
       

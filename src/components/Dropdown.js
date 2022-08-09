@@ -14,6 +14,7 @@ const Dropdown = (props) => {
     if ((character.xCoord + 50) >= props.xCoord && (character.xCoord - 50) <= props.xCoord) {
       if ((character.yCoord + 50) >= props.yCoord && (character.yCoord - 50) <= props.yCoord) {
         props.addToCorrect(character.character);
+        alert("You found " + character.character + "!");
       }
     }
   }
